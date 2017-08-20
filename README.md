@@ -1,5 +1,5 @@
 # Awesome Lists - Website
-> Hosted at http://awesome.ravernkoh.com (Site still in development)
+> Hosted at http://awesome.ravernkoh.me (Site still in development)
 
 Website for making and sharing awesome lists, which are collection of links to interesting things related to the list. Some of the frameworks used include Phoenix, Elixir and Elm. Built by Ravern Koh.
 
@@ -10,4 +10,4 @@ Awesome lists are collections of links to (awesome) resources on the topic of th
 I simply wanted a pet project to work on during my free time. This project seemed simple enough that I wouldn't be spending a few years trying to build this, but complex enough that I get to learn new things (stuff like photo upload, sending emails, etc.) while building this. At the time of starting this project, I have been learning Phoenix and Elixir for about 1 month, with only prior experience in NodeJS.
 
 ## Author
-* Ravern Koh \[http://ravernkoh.com\] (Site still in development)
+* Ravern Koh \[http://ravernkoh.me\] (Site still in development)
