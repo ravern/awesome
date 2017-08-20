@@ -10,7 +10,7 @@ defmodule Awesome.Mixfile do
       compilers: [:phoenix, :gettext] ++ Mix.compilers,
       start_permanent: Mix.env == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
     ]
   end
 
@@ -33,6 +33,7 @@ defmodule Awesome.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      # Phoenix
       {:phoenix, "~> 1.3.0"},
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_ecto, "~> 3.2"},
@@ -40,7 +41,11 @@ defmodule Awesome.Mixfile do
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
-      {:cowboy, "~> 1.0"}
+      {:cowboy, "~> 1.0"},
+
+      # Deployment
+      {:distillery, "~> 1.4"},
+      {:edeliver, "~> 1.4.2"},
     ]
   end
 
