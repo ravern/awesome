@@ -44,8 +44,8 @@ pre_erlang_clean_compile() {
 
     # install node modules and build assets
     cd assets/
-    npm install 
-    ./node_modules/brunch/bin/brunch build --production 
+    npm install
+    ./node_modules/brunch/bin/brunch build --production
     cd ..
 
     # run your custom task
