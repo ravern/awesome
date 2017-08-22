@@ -51,7 +51,7 @@ defmodule Awesome.Accounts do
   """
   def create_user(attrs \\ %{}) do
     %User{}
-    |> User.changeset(attrs)
+    |> User.register_changeset(attrs)
     |> Repo.insert()
   end
 
@@ -69,7 +69,7 @@ defmodule Awesome.Accounts do
   """
   def update_user(%User{} = user, attrs) do
     user
-    |> User.changeset(attrs)
+    |> User.profile_changeset(attrs)
     |> Repo.update()
   end
 
@@ -99,6 +99,6 @@ defmodule Awesome.Accounts do
 
   """
   def change_user(%User{} = user) do
-    User.changeset(user, %{})
+    User.register_changeset(user, %{})
   end
 end

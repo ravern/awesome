@@ -43,6 +43,12 @@ defmodule Awesome.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
 
+      # Auth
+      {:ueberauth, "~> 0.4"},
+      {:ueberauth_identity, "~> 0.2"},
+      {:comeonin, "~> 4.0"},
+      {:bcrypt_elixir, "~> 0.12.0"},
+
       # Deployment
       {:distillery, "~> 1.4"},
       {:edeliver, "~> 1.4.2"},
