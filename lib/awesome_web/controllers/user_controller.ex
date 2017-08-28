@@ -1,60 +1,41 @@
 defmodule AwesomeWeb.UserController do
   use AwesomeWeb, :controller
-
   alias Awesome.Accounts
-  alias Awesome.Accounts.User
 
-  def index(conn, _params) do
-    users = Accounts.list_users()
-    render(conn, "index.html", users: users)
-  end
+  plug Guardian.Plug.EnsureResource, [handler: AwesomeWeb.GuardianErrorHandler]
+    when action in [:edit_profile, :update_profile]
 
   def new(conn, _params) do
-    changeset = Accounts.change_user(%User{})
-    render(conn, "new.html", changeset: changeset)
+    changeset = Accounts.change_user(:registration)
+    render conn, "new.html", changeset: changeset
   end
 
   def create(conn, %{"user" => user_params}) do
-    case Accounts.create_user(user_params) do
-      {:ok, user} ->
+    case Accounts.register_user(user_params) do
+      {:ok, _} ->
         conn
-        |> put_flash(:info, "User created successfully.")
-        |> redirect(to: user_path(conn, :show, user))
-      {:error, %Ecto.Changeset{} = changeset} ->
+        |> put_flash(:success, "You have been successfully registered!")
+        |> redirect(to: auth_path(conn, :request, "identity"))
+      {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    user = Accounts.get_user!(id)
-    render(conn, "show.html", user: user)
+  def edit_profile(conn, _params) do
+    user = Guardian.Plug.current_resource(conn)
+    changeset = Accounts.change_user(user, :profile)
+    render conn, "edit_profile.html", changeset: changeset, user: user
   end
 
-  def edit(conn, %{"id" => id}) do
-    user = Accounts.get_user!(id)
-    changeset = Accounts.change_user(user)
-    render(conn, "edit.html", user: user, changeset: changeset)
-  end
-
-  def update(conn, %{"id" => id, "user" => user_params}) do
-    user = Accounts.get_user!(id)
-
-    case Accounts.update_user(user, user_params) do
-      {:ok, user} ->
+  def update_profile(conn, %{"user" => user_params}) do
+    user = Guardian.Plug.current_resource(conn)
+    case Accounts.update_user_profile(user, user_params) do
+      {:ok, _} ->
         conn
-        |> put_flash(:info, "User updated successfully.")
-        |> redirect(to: user_path(conn, :show, user))
-      {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", user: user, changeset: changeset)
+        |> put_flash(:success, "Successfully updated profile!")
+        |> redirect(to: page_path(conn, :index))
+      {:error, changeset} ->
+        render(conn, "edit_profile.html", changeset: changeset, user: user)
     end
-  end
-
-  def delete(conn, %{"id" => id}) do
-    user = Accounts.get_user!(id)
-    {:ok, _user} = Accounts.delete_user(user)
-
-    conn
-    |> put_flash(:info, "User deleted successfully.")
-    |> redirect(to: user_path(conn, :index))
   end
 end

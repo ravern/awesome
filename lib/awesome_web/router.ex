@@ -9,19 +9,26 @@ defmodule AwesomeWeb.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
+  # TODO: Refactor to better naming
+  pipeline :browser_session do
+    plug Guardian.Plug.VerifySession
+    plug Guardian.Plug.LoadResource
   end
 
   scope "/", AwesomeWeb do
-    pipe_through :browser # Use the default browser stack
+    pipe_through [:browser, :browser_session]
 
     get "/", PageController, :index
-    resources "/users", UserController
+    resources "/users", UserController, only: [:new, :create]
+    get "/profile/edit", UserController, :edit_profile
+    put "/profile", UserController, :update_profile
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", AwesomeWeb do
-  #   pipe_through :api
-  # end
+  scope "/auth", AwesomeWeb do
+    pipe_through [:browser, :browser_session]
+
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
+    post "/identity/callback", AuthController, :identity_callback
+  end
 end

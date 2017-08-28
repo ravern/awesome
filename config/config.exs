@@ -22,6 +22,24 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+# Authentication
+config :ueberauth, Ueberauth,
+  providers: [
+    identity: {Ueberauth.Strategy.Identity, [
+      callback_methods: ["POST"],
+      param_nesting: "user",
+      scrub_params: false,
+    ]}
+  ]
+
+# Guardian JWT stuff
+config :guardian, Guardian,
+  issuer: "Awesome <awesome-lists>",
+  ttl: { 30, :days },
+  allowed_drift: 2000,
+  secret_key: "SdD7W4FlBEBJIsNGNyYfGWhvfqaeRVsCJhmHmBhiwIJANps4Ed9l29qg8gV2zWji",
+  serializer: Awesome.GuardianSerializer
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

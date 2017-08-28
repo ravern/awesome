@@ -4,10 +4,16 @@ use Mix.Config
 # you can enable the server option below.
 config :awesome, AwesomeWeb.Endpoint,
   http: [port: 4001],
-  server: false
+  server: true # Wallaby
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+# SQL Sandbox for concurrent testing
+config :awesome, sql_sandbox: true
+
+# Reduce number of rounds when testing (save time)
+config :bcrypt_elixir, log_rounds: 4
 
 # Configure your database
 config :awesome, Awesome.Repo,
