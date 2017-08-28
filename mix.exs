@@ -48,6 +48,10 @@ defmodule Awesome.Mixfile do
       {:ueberauth_identity, "~> 0.2"},
       {:comeonin, "~> 4.0"},
       {:bcrypt_elixir, "~> 0.12.0"},
+      {:guardian, "~> 0.14"},
+
+      # Testing
+      {:wallaby, "~> 0.19.1", only: :test},
     ]
   end
 

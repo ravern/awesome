@@ -1,6 +1,10 @@
 defmodule AwesomeWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :awesome
 
+  if Application.get_env(:awesome, :sql_sandbox) do
+    plug Phoenix.Ecto.SQL.Sandbox
+  end
+
   socket "/socket", AwesomeWeb.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
