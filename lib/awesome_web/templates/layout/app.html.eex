@@ -7,30 +7,62 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello Awesome!</title>
+    <title>Awesome Lists<%= if title = assigns[:title], do: " | #{title}", else: "" %></title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
-    <div class="container">
-      <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav>
-        <span class="logo"></span>
-      </header>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+      <div class="container">
+        <a class="navbar-brand font-weight-bold" href="#">AwesomeLists</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" href="#">About</a>
+          </div>
+          <div class="navbar-nav ml-auto">
+            <%= if user = current_user(@conn) do %>
+              <a class="nav-item nav-link active" href="<%= user_path(@conn, :edit_profile) %>"><%= user.name %></a>
+            <% else %>
+              <a class="nav-item nav-link" href="<%= auth_path(@conn, :request, "identity") %>">Login</a>
+              <a class="nav-item nav-link active" href="<%= user_path(@conn, :new) %>">Register</a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </nav>
 
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-success" role="alert"><%= get_flash(@conn, :success) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+    <!-- content wrapper -->
+    <div class="container pt-3">
+      <!-- flashes -->
+      <%= if msg = get_flash(@conn, :info) do %>
+        <div class="alert alert-primary" role="alert">
+          <%= msg %>
+        </div>
+      <% end %>
+      <%= if msg = get_flash(@conn, :success) do %>
+        <div class="alert alert-success" role="alert">
+          <%= msg %>
+        </div>
+      <% end %>
+      <%= if msg = get_flash(@conn, :error) do %>
+        <div class="alert alert-danger" role="alert">
+          <%= msg %>
+        </div>
+      <% end %>
 
-      <main role="main">
-        <%= render @view_module, @view_template, assigns %>
-      </main>
+      <!-- content -->
+      <%= render @view_module, @view_template, assigns %>
+    </div>
 
-    </div> <!-- /container -->
+    <!-- footer -->
+    <footer class="footer text-center">
+      <span class="text-primary">built by <b>Ravern Koh &lt;ravern.koh.dev@gmail.com&gt;</b></span>
+    </footer>
+
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

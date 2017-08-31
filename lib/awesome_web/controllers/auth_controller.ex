@@ -4,7 +4,7 @@ defmodule AwesomeWeb.AuthController do
   plug Ueberauth
 
   def request(conn, %{"provider" => "identity"}) do
-    render conn, "request.html"
+    render conn, "request.html", title: "Login"
   end
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do

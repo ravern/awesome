@@ -1,0 +1,57 @@
+// FontAwesome stuff
+$fa-font-path: "../fonts";
+@import "font-awesome";
+
+// Customize initial variables
+$enable-rounded: false;
+$font-family-sans-serif: Roboto;
+$font-weight-bold: 500;
+$bluish-purple: #526ad1;
+$light-gray: #f0f0f0;
+$border-width: 0;
+$input-bg: $light-gray;
+
+// Import the rest of the initial variables
+@import "functions";
+@import "variables";
+
+// Customize derived variables
+$body-bg: $light-gray;
+$theme-colors: (
+  primary: $bluish-purple,
+  secondary: $gray-600,
+  success: $green,
+  info: $cyan,
+  warning: $yellow,
+  danger: $red,
+  light: $gray-100,
+  dark: $gray-800
+);
+
+// Bootstrap
+@import "bootstrap";
+
+// Custom SCSS
+// Sticky footer
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+  background-color: $white;
+}
+
+// Body background color
+.bg-body-bg {
+  background-color: $body-bg;
+}
