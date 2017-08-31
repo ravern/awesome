@@ -34,4 +34,11 @@ defmodule AwesomeWeb.AuthController do
         |> render("request.html")
     end
   end
+
+  def sign_out(conn, _params) do
+    conn
+    |> Guardian.Plug.sign_out()
+    |> put_flash(:info, "You have been signed out.")
+    |> redirect(to: "/")
+  end
 end
