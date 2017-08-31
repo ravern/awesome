@@ -8,12 +8,12 @@
       <%= form_for @conn, auth_path(@conn, :callback, "identity"), [as: :user], fn f -> %>
         <div class="card-body">
           <div class="form-group">
-            <%= label f, :email, class: "control-label" %>
+            <%= label f, :email %>
             <%= text_input f, :email, class: "form-control" %>
           </div>
 
           <div class="form-group">
-            <%= label f, :password, class: "control-label" %>
+            <%= label f, :password %>
             <%= password_input f, :password, class: "form-control" %>
           </div>
         </div>

@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello Awesome!</title>
+    <title>Awesome Lists<%= if title = assigns[:title], do: " | #{title}", else: "" %></title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
@@ -24,8 +24,12 @@
             <a class="nav-item nav-link" href="#">About</a>
           </div>
           <div class="navbar-nav ml-auto">
-            <a class="nav-item nav-link" href="<%= auth_path(@conn, :request, "identity") %>">Login</a>
-            <a class="nav-item nav-link active" href="<%= user_path(@conn, :new) %>">Register</a>
+            <%= if user = current_user(@conn) do %>
+              <a class="nav-item nav-link active" href="<%= user_path(@conn, :edit_profile) %>"><%= user.name %></a>
+            <% else %>
+              <a class="nav-item nav-link" href="<%= auth_path(@conn, :request, "identity") %>">Login</a>
+              <a class="nav-item nav-link active" href="<%= user_path(@conn, :new) %>">Register</a>
+            <% end %>
           </div>
         </div>
       </div>

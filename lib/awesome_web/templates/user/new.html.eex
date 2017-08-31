@@ -13,25 +13,25 @@
       <%= form_for @changeset, user_path(@conn, :create), fn f -> %>
         <div class="card-body">
           <div class="form-group">
-            <%= label f, :name, class: "control-label" %>
+            <%= label f, :name %>
             <%= text_input f, :name, class: "form-control" %>
             <%= error_tag f, :name %>
           </div>
 
           <div class="form-group">
-            <%= label f, :email, class: "control-label" %>
+            <%= label f, :email %>
             <%= text_input f, :email, class: "form-control" %>
             <%= error_tag f, :email %>
           </div>
 
           <div class="form-group">
-            <%= label f, :password, class: "control-label" %>
+            <%= label f, :password %>
             <%= password_input f, :password, class: "form-control", id: "password" %>
             <%= error_tag f, :password %>
           </div>
 
           <div class="form-group">
-            <%= label f, :password_confirmation, class: "control-label" %>
+            <%= label f, :password_confirmation, "Confirm password" %>
             <%= password_input f, :password_confirmation, class: "form-control", id: "password-confirmation" %>
             <%= error_tag f, :password_confirmation %>
           </div>
