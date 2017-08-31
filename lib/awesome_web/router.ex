@@ -30,5 +30,6 @@ defmodule AwesomeWeb.Router do
     get "/:provider", AuthController, :request
     get "/:provider/callback", AuthController, :callback
     post "/identity/callback", AuthController, :identity_callback
+    delete "/sign_out", AuthController, :sign_out
   end
 end
