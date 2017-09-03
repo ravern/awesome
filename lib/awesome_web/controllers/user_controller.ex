@@ -3,7 +3,7 @@ defmodule AwesomeWeb.UserController do
   alias Awesome.Accounts
 
   plug Guardian.Plug.EnsureResource, [handler: AwesomeWeb.GuardianErrorHandler]
-    when action in [:edit_profile, :update_profile]
+    when action in [:edit, :update]
 
   def new(conn, _params) do
     changeset = Accounts.change_user(:registration)
@@ -21,21 +21,21 @@ defmodule AwesomeWeb.UserController do
     end
   end
 
-  def edit_profile(conn, _params) do
+  def edit(conn, _params) do
     user = Guardian.Plug.current_resource(conn)
     changeset = Accounts.change_user(user, :profile)
-    render conn, "edit_profile.html", changeset: changeset, user: user, title: "Edit Profile"
+    render conn, "edit.html", changeset: changeset, user: user, title: "Edit Profile"
   end
 
-  def update_profile(conn, %{"user" => user_params}) do
+  def update(conn, %{"user" => user_params}) do
     user = Guardian.Plug.current_resource(conn)
     case Accounts.update_user_profile(user, user_params) do
       {:ok, _} ->
         conn
         |> put_flash(:success, "Successfully updated profile!")
-        |> redirect(to: page_path(conn, :index))
+        |> redirect(to: list_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "edit_profile.html", changeset: changeset, user: user)
+        render(conn, "edit.html", changeset: changeset, user: user)
     end
   end
 end

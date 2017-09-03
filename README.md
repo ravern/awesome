@@ -1,7 +1,7 @@
 # Awesome Lists - Website
 > Hosted at http://awesome.ravernkoh.me (Site still in development)
 
-Website for making and sharing awesome lists, which are collection of links to interesting things related to the list. Some of the frameworks used include Phoenix, Elixir and Elm. Built by Ravern Koh.
+Website for making and sharing awesome lists, which are collection of links to interesting things related to the list. It uses Phoenix, written in Elixir and uses Bootstrap 4.0 for the frontend design. Built by Ravern Koh.
 
 ## What are awesome lists?
 Awesome lists are collections of links to (awesome) resources on the topic of the awesome list. So an awesome list on "Elixir" would have links to some of the best libraries, articles and videos on the topic. Awesome lists are not a new concept invented by me, many awesome lists already exist on GitHub.

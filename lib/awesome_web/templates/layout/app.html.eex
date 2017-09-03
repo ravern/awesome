@@ -26,8 +26,8 @@
           <div class="navbar-nav ml-auto">
             <%= if user = current_user(@conn) do %>
               <!-- TODO: convert all to link tags -->
-              <a class="nav-item nav-link active" href="<%= user_path(@conn, :edit_profile) %>"><%= user.name %></a>
-              <%= link "Sign out", to: auth_path(@conn, :sign_out), method: :delete, class: "nav-item nav-link" %>
+              <a class="nav-item nav-link active" href="<%= user_path(@conn, :edit) %>"><%= user.name %></a>
+              <%= link "Sign out", to: auth_path(@conn, :sign_out), method: :delete, class: "nav-item nav-link", id: "signOut" %>
             <% else %>
               <a class="nav-item nav-link" href="<%= auth_path(@conn, :request, "identity") %>">Login</a>
               <a class="nav-item nav-link active" href="<%= user_path(@conn, :new) %>">Register</a>

@@ -10,6 +10,6 @@ defmodule AwesomeWeb.GuardianErrorHandler do
   def no_resource(conn, _params) do
     conn
     |> put_flash(:error, "You need to login first.")
-    |> redirect(to: page_path(conn, :index))
+    |> redirect(to: list_path(conn, :index))
   end
 end

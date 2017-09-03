@@ -3,6 +3,7 @@ defmodule Awesome.Accounts.User do
   import Ecto.Changeset
   import Comeonin.Bcrypt, only: [hashpwsalt: 1, checkpw: 2]
   alias Awesome.Accounts.User
+  alias Awesome.Lists.Author
 
   @email_format ~r/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
 
@@ -15,6 +16,8 @@ defmodule Awesome.Accounts.User do
     field :old_password, :string, virtual: true
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
+
+    has_one :author, Author
 
     timestamps()
   end

@@ -18,10 +18,11 @@ defmodule AwesomeWeb.Router do
   scope "/", AwesomeWeb do
     pipe_through [:browser, :browser_session]
 
-    get "/", PageController, :index
+    get "/", ListController, :index
+
     resources "/users", UserController, only: [:new, :create]
-    get "/profile/edit", UserController, :edit_profile
-    put "/profile", UserController, :update_profile
+    get "/user/edit", UserController, :edit
+    put "/user", UserController, :update
   end
 
   scope "/auth", AwesomeWeb do
