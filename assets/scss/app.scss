@@ -27,6 +27,12 @@ $theme-colors: (
   light: $gray-100,
   dark: $gray-800
 );
+$container-max-widths: (
+  sm: 420px,
+  md: 540px,
+  lg: 660px,
+  xl: 780px
+);
 
 // Bootstrap
 @import "bootstrap";
@@ -54,4 +60,10 @@ body {
 // Body background color
 .bg-body-bg {
   background-color: $body-bg;
+}
+
+// Single line text
+.single-line {
+  white-space: nowrap;
+  overflow: hidden;
 }

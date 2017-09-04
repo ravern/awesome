@@ -24,7 +24,7 @@ defmodule AwesomeWeb.UserController do
   def edit(conn, _params) do
     user = Guardian.Plug.current_resource(conn)
     changeset = Accounts.change_user(user, :profile)
-    render conn, "edit.html", changeset: changeset, user: user, title: "Edit Profile"
+    render conn, "edit.html", changeset: changeset, user: user, title: "Edit User"
   end
 
   def update(conn, %{"user" => user_params}) do
