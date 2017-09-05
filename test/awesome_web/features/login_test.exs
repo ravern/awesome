@@ -1,7 +1,6 @@
 defmodule AwesomeWeb.LoginTest do
   use AwesomeWeb.FeatureCase, async: true
   import Wallaby.Query, only: [css: 1]
-  alias AwesomeWeb.Endpoint
   alias Awesome.Accounts
 
   describe "login" do

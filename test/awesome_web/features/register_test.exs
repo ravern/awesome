@@ -1,7 +1,6 @@
 defmodule AwesomeWeb.RegisterTest do
   use AwesomeWeb.FeatureCase, async: true
   import Wallaby.Query, only: [text_field: 1, button: 1, css: 1]
-  alias AwesomeWeb.Endpoint
 
   describe "registration" do
     test "with valid input succeeds", %{session: session} do

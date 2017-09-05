@@ -2,7 +2,6 @@ defmodule AwesomeWeb.ProfileTest do
   use AwesomeWeb.FeatureCase, async: true
   import Wallaby.Query, only: [text_field: 1, css: 1, button: 1]
   alias Awesome.Accounts
-  alias AwesomeWeb.Endpoint
 
   describe "profile" do
     setup do

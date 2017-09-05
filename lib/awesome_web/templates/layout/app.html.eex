@@ -26,6 +26,7 @@
           <div class="navbar-nav ml-auto">
             <%= if user = current_user(@conn) do %>
               <!-- TODO: convert all to link tags -->
+              <%= link "Create", to: list_path(@conn, :new), class: "nav-item nav-link" %>
               <a class="nav-item nav-link active" href="<%= user_path(@conn, :edit) %>"><%= user.name %></a>
               <%= link "Sign out", to: auth_path(@conn, :sign_out), method: :delete, class: "nav-item nav-link", id: "signOut" %>
             <% else %>
@@ -62,7 +63,7 @@
 
     <!-- footer -->
     <footer class="footer text-center">
-      <span class="text-primary">built by <b>Ravern Koh &lt;ravern.koh.dev@gmail.com&gt;</b></span>
+      <small class="text-primary">built by <b>Ravern Koh &lt;ravern.koh.dev@gmail.com&gt;</b></small>
     </footer>
 
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>

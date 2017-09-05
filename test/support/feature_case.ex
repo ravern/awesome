@@ -7,6 +7,7 @@ defmodule AwesomeWeb.FeatureCase do
       import AwesomeWeb.FeatureHelpers
 
       alias Awesome.Repo
+      alias AwesomeWeb.Endpoint
       import Ecto
       import Ecto.Changeset
       import Ecto.Query

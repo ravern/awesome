@@ -31,4 +31,21 @@ defmodule Awesome.Lists do
   def list_lists() do
     Repo.all(List)
   end
+
+  @doc """
+  Returns an empty list changeset.
+  """
+  def change_list(list \\ %List{}) do
+    List.changeset(list, %{})
+  end
+
+  @doc """
+  Creates a list with the author as the owner.
+  """
+  def create_list(%Author{} = author, attrs) do
+    author
+    |> Ecto.build_assoc(:lists)
+    |> List.changeset(attrs)
+    |> Repo.insert()
+  end
 end

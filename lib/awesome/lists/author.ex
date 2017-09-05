@@ -5,11 +5,12 @@ defmodule Awesome.Lists.Author do
   """
 
   use Ecto.Schema
-  import Ecto.Changeset
   alias Awesome.Accounts.User
+  alias Awesome.Lists.List
 
   schema "authors" do
     belongs_to :user, User
+    has_many :lists, List
 
     timestamps()
   end
