@@ -4,6 +4,7 @@ defmodule Awesome.Lists.List do
   alias Awesome.Lists.{List, Author}
 
   @max_slug_length 15
+  @slug_format ~r/([a-zA-Z]+)/
 
   schema "lists" do
     field :title, :string
@@ -20,7 +21,10 @@ defmodule Awesome.Lists.List do
     list
     |> cast(attrs, [:title, :description, :slug])
     |> validate_required([:title, :description, :slug])
+    |> validate_length(:title, max: 20)
+    |> validate_length(:description, max: 40)
     |> validate_length(:slug, max: @max_slug_length)
+    |> validate_format(:slug, @slug_format)
     |> unique_constraint(:slug)
   end
 end

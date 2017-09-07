@@ -26,10 +26,13 @@ defmodule Awesome.Lists do
   end
 
   @doc """
-  Returns a list of all the lists.
+  Returns a list of all the lists with
+  `author` preloaded.
   """
   def list_lists() do
-    Repo.all(List)
+    List
+    |> Repo.all()
+    |> Repo.preload([author: :user])
   end
 
   @doc """

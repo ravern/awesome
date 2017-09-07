@@ -1,5 +1,6 @@
 defmodule AwesomeWeb.ListView do
   use AwesomeWeb, :view
+  alias AwesomeWeb.Endpoint
 
   def columned_lists(lists) do
     {left, len_left, right, len_right} =
@@ -19,5 +20,12 @@ defmodule AwesomeWeb.ListView do
   def distribute_elem(list, {left, len_left, right, len_right}) when len_left > len_right,
     do: {left, len_left, [list | right], len_right + 1}
   def distribute_elem(list, {left, len_left, right, len_right}),
-    do: {[list | left], len_left + 1, right, len_right} 
+    do: {[list | left], len_left + 1, right, len_right}
+
+  @doc """
+  Removed the "http://" in front of the url
+  """
+  def display_url() do
+    URI.parse(Endpoint.url()).authority
+  end
 end
