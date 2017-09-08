@@ -15,3 +15,4 @@ I simply wanted a pet project to work on during my free time. This project seeme
 ## Todos
 - [ ] Add image upload functionality (For profile pictures)
 - [ ] Add more options to discover lists
+- [ ] 'Like' functionality
