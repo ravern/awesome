@@ -1,10 +1,1 @@
-<div class="card border-0 mb-4">
-  <div class="card-body">
-    <h4 class="card-title"><%= @list.title %></h4>
-    <p class="card-subtitle single-line mb-3"><%= @list.description %></p>
-    <a href="#" class="card-link text-secondary">
-      <div class="d-inline-block align-middle mr-2" style="background-color: red; width: 30px; height: 30px;"></div>
-      <%= @list.author.user.name %>
-    </a>
-  </div>
-</div>
+<%= render "list.html", assigns %>
