@@ -17,6 +17,7 @@ $input-bg: $light-gray;
 
 // Customize derived variables
 $body-bg: $light-gray;
+$input-group-addon-bg: $gray-300;
 $theme-colors: (
   primary: $bluish-purple,
   secondary: $gray-600,
@@ -26,6 +27,12 @@ $theme-colors: (
   danger: $red,
   light: $gray-100,
   dark: $gray-800
+);
+$container-max-widths: (
+  sm: 420px,
+  md: 540px,
+  lg: 660px,
+  xl: 780px
 );
 
 // Bootstrap
@@ -54,4 +61,10 @@ body {
 // Body background color
 .bg-body-bg {
   background-color: $body-bg;
+}
+
+// Single line text
+.single-line {
+  white-space: nowrap;
+  overflow: hidden;
 }

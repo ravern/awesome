@@ -2,6 +2,7 @@ defmodule Awesome.Accounts do
   @moduledoc """
   Handles all things admin/account related.
   """
+
   import Ecto.Query, warn: false
   import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
   alias Awesome.{Repo, Accounts}

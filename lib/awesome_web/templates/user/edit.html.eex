@@ -4,9 +4,9 @@
   </div>
 <% end %>
 <div class="row justify-content-center">
-  <div class="col-lg-4 col-md-7 col-sm-10">
-    <div class="card bg-light border-0">
-      <%= form_for @changeset, user_path(@conn, :update_profile), fn f -> %>
+  <div class="col-lg-6 col-md-10">
+    <div class="card bg-light border-0 mb-4">
+      <%= form_for @changeset, user_path(@conn, :update), fn f -> %>
         <div class="card-body">
           <div class="form-group">
             <%= label f, :name %>
