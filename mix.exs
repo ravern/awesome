@@ -44,6 +44,9 @@ defmodule Awesome.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
 
+      # Routing
+      {:ecto_autoslug_field, "~> 0.3"},
+
       # Auth
       {:ueberauth, "~> 0.4"},
       {:ueberauth_identity, "~> 0.2"},

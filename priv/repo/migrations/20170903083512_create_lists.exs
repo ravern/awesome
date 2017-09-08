@@ -5,7 +5,7 @@ defmodule Awesome.Repo.Migrations.CreateLists do
     create table(:lists) do
       add :title, :string
       add :description, :string
-      add :slug, :citext
+      add :slug, :string
 
       add :author_id, references(:authors), on_delete: :nilify_all
 

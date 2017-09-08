@@ -11,3 +11,7 @@ I simply wanted a pet project to work on during my free time. This project seeme
 
 ## Author
 * Ravern Koh \[http://ravernkoh.me\] (Site still in development)
+
+## Todos
+- [ ] Add image upload functionality (For profile pictures)
+- [ ] Add more options to discover lists

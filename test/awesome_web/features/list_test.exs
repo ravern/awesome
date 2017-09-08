@@ -15,17 +15,14 @@ defmodule AwesomeWeb.ListTest do
       {:ok, _} = Lists.create_list(author, %{
         title: "List 1",
         description: "list 1 description",
-        slug: "list1"
       })
       {:ok, _} = Lists.create_list(author, %{
         title: "List 2",
         description: "list 2 description",
-        slug: "list2"
       })
       {:ok, _} = Lists.create_list(author, %{
         title: "List 3",
         description: "list 3 description",
-        slug: "list3"
       })
       :ok
     end
@@ -88,7 +85,6 @@ defmodule AwesomeWeb.ListTest do
       |> visit(list_path(Endpoint, :new))
       |> fill_in(text_field("Title"), with: "a very looooooooooooooooooooooooooooooooooooooooooooooooooooong title")
       |> fill_in(text_field("Description"), with: "an even loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooonger description")
-      |> fill_in(text_field("Slug"), with: "i n v a l i d s l u g s")
       |> click(button("Create the list"))
       |> assert_has(flash("Oops", :danger))
     end
@@ -99,7 +95,6 @@ defmodule AwesomeWeb.ListTest do
       |> visit(list_path(Endpoint, :new))
       |> fill_in(text_field("Title"), with: "A title")
       |> fill_in(text_field("Description"), with: "A description")
-      |> fill_in(text_field("Slug"), with: "aSlug")
       |> click(button("Create the list"))
       |> assert_has(flash("Created", :success))
     end
