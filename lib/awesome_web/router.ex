@@ -19,6 +19,7 @@ defmodule AwesomeWeb.Router do
     pipe_through [:browser, :browser_session]
 
     get "/", ListController, :index
+    get "/:slug", ListController, :show
     resources "/lists", ListController, only: [:new, :create]
 
     get "/user/edit", UserController, :edit

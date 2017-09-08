@@ -6,6 +6,8 @@ defmodule Awesome.Lists.List do
   @max_slug_length 15
   @slug_format ~r/([a-zA-Z]+)/
 
+  @reserved_routes ~w(auth user users)
+
   schema "lists" do
     field :title, :string
     field :description, :string
@@ -25,6 +27,7 @@ defmodule Awesome.Lists.List do
     |> validate_length(:description, max: 40)
     |> validate_length(:slug, max: @max_slug_length)
     |> validate_format(:slug, @slug_format)
+    |> validate_exclusion(:slug, @reserved_routes, message: "is a reserved slug")
     |> unique_constraint(:slug)
   end
 end

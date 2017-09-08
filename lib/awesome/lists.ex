@@ -36,6 +36,16 @@ defmodule Awesome.Lists do
   end
 
   @doc """
+  Finds a list with the correct slug, or
+  raises an error if not found.
+  """
+  def get_list!(slug) do
+    List
+    |> Repo.get_by!(slug: slug)
+    |> Repo.preload([author: :user])
+  end
+
+  @doc """
   Returns an empty list changeset.
   """
   def change_list(list \\ %List{}) do

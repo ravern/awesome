@@ -31,4 +31,9 @@ defmodule AwesomeWeb.ListController do
         render(conn, "new.html", changeset: changeset)
     end
   end
+
+  def show(conn, %{"slug" => slug}) do
+    list = Lists.get_list!(slug)
+    render conn, "show.html", list: list
+  end
 end
