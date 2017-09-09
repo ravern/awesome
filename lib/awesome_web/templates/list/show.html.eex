@@ -1,1 +1,16 @@
 <%= render "list.html", assigns %>
+<div class="row">
+  <div class="col-md-9">
+    <div class="card border-0 pt-2 mb-3" style="text-decoration: none;">
+      <div class="card-title mb-2 ml-3">Search</div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card border-0 text-center pt-2" style="text-decoration: none;">
+      <div class="card-title mb-2"><%= utility_button @conn %></div>
+    </div>
+  </div>
+</div>
+<%= for item <- @list.items do %>
+  <%= render "item.html", conn: @conn, item: item %>
+<% end %>

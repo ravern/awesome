@@ -1,7 +1,7 @@
 defmodule Awesome.Lists.List do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Awesome.Lists.{List, Author}
+  alias Awesome.Lists.{List, Author, Item}
   alias Awesome.Lists.List.TitleSlug
 
   schema "lists" do
@@ -10,6 +10,7 @@ defmodule Awesome.Lists.List do
 
     field :slug, TitleSlug.Type
 
+    has_many :items, Item
     belongs_to :author, Author
 
     timestamps()

@@ -18,7 +18,6 @@ defmodule Awesome.Lists do
     end
   end
 
-  # TODO don't use bang
   defp create_author(user) do
     user
     |> Ecto.build_assoc(:author)
@@ -42,7 +41,7 @@ defmodule Awesome.Lists do
   def get_list!(slug) do
     List
     |> Repo.get_by!(slug: slug)
-    |> Repo.preload([author: :user])
+    |> Repo.preload([:items, [author: :user]])
   end
 
   @doc """

@@ -1,5 +1,5 @@
 <a href="<%= list_path(@conn, :show, @list.slug) %>" class="text-dark" style="text-decoration: none">
-  <div class="card border-0 mb-4">
+  <div class="card border-0 mb-3">
     <div class="card-body">
       <h4 class="card-title"><%= @list.title %></h4>
       <p class="card-subtitle single-line mb-3"><%= @list.description %></p>
