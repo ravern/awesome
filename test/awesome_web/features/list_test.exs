@@ -34,12 +34,12 @@ defmodule AwesomeWeb.ListTest do
       |> find(css(".card", count: 3))
       |> Enum.with_index()
       |> Enum.each(fn {elem, idx}->
-        elem
-        |> assert_has(Wallaby.Query.text("List #{idx + 1}"))
-        |> assert_has(Wallaby.Query.text("list #{idx + 1} description"))
-        |> assert_has(link("John Tan"))
-      end)
-    end
+             elem
+             |> assert_has(Wallaby.Query.text("List #{idx + 1}"))
+             |> assert_has(Wallaby.Query.text("list #{idx + 1} description"))
+             |> assert_has(link("John Tan"))
+           end)
+         end
   end
 
   describe "list showing" do
@@ -56,15 +56,52 @@ defmodule AwesomeWeb.ListTest do
         description: "list 1 description",
         slug: "list1"
       })
+
+      {:ok, user2} = Accounts.register_user(%{
+        name: "Sam Lim",
+        email: "sam_lim@gmail.com",
+        password: "123456",
+        password_confirmation: "123456",
+      })
+      author2 = Lists.get_author(user2)
+      {:ok, _} = Lists.create_list(author2, %{
+        title: "List 2",
+        description: "list 2 description",
+        slug: "list2"
+      })
       :ok
     end
 
     test "list details correctly", %{session: session} do
       session
       |> visit(list_path(Endpoint, :index))
-      |> click(css(".card"))
+      |> click(Wallaby.Query.text("List 1"))
+      |> take_screenshot()
       |> assert_has(Wallaby.Query.text("List 1"))
       |> assert_has(Wallaby.Query.text("list 1 description"))
+    end
+
+    test "add if user is owner", %{session: session} do
+      session
+      |> perform_login("john_tan@gmail.com", "123456")
+      |> visit(list_path(Endpoint, :index))
+      |> click(Wallaby.Query.text("List 1"))
+      |> assert_has(link("Add"))
+    end
+
+    test "contribute if user is not owner", %{session: session} do
+      session
+      |> perform_login("john_tan@gmail.com", "123456")
+      |> visit(list_path(Endpoint, :index))
+      |> click(Wallaby.Query.text("List 2"))
+      |> assert_has(link("Contribute"))
+    end
+
+    test "login to contribute if user not logged in", %{session: session} do
+      session
+      |> visit(list_path(Endpoint, :index))
+      |> click(Wallaby.Query.text("List 2"))
+      |> assert_has(link("Login to contribute"))
     end
   end
 
