@@ -1,17 +1,16 @@
-defmodule Awesome.Repo.Migrations.CreateLists do
+defmodule Awesome.Repo.Migrations.CreateItems do
   use Ecto.Migration
 
   def change do
-    create table(:lists) do
+    create table(:items) do
       add :title, :string
       add :description, :string
-      add :slug, :string
+      add :url, :string
 
+      add :list_id, references(:lists), on_delete: :delete_all
       add :author_id, references(:authors), on_delete: :nilify_all
 
       timestamps()
     end
-
-    create unique_index(:lists, [:slug])
   end
 end
