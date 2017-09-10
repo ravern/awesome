@@ -1,36 +1,48 @@
 defmodule AwesomeWeb.ItemTest do
   use AwesomeWeb.FeatureCase, async: true
-  import Wallaby.Query, only: [css: 2, text_field: 1, button: 1, css: 1, link: 1]
+  import Wallaby.Query, only: [text_field: 1, button: 1, link: 1]
   alias Awesome.{Lists, Accounts}
 
-  # describe "item listing" do
-    # setup do
-      # {:ok, user} = Accounts.register_user(%{
-        # name: "John Tan",
-        # email: "john_tan@gmail.com",
-        # password: "123456",
-        # password_confirmation: "123456",
-      # })
-      # author = Lists.get_author(user)
-      # {:ok, _} = Lists.create_list(author, %{
-        # title: "List 1",
-        # description: "list 1 description",
-      # })
-      # :ok
-    # end
+  describe "item creation" do
+    setup do
+      {:ok, user} = Accounts.register_user(%{
+        name: "John Tan",
+        email: "john_tan@gmail.com",
+        password: "123456",
+        password_confirmation: "123456",
+      })
+      author = Lists.get_author(user)
+      {:ok, _} = Lists.create_list(author, %{
+        title: "List 1",
+        description: "list 1 description",
+      })
+      :ok
+    end
 
-    # test "displays content and author correctly", %{session: session} do
-      # session
-      # |> visit(list_path(Endpoint, :index))
-      # |> take_screenshot()
-      # |> find(css(".card", count: 3))
-      # |> Enum.with_index()
-      # |> Enum.each(fn {elem, idx}->
-        # elem
-        # |> assert_has(Wallaby.Query.text("List #{idx + 1}"))
-        # |> assert_has(Wallaby.Query.text("list #{idx + 1} description"))
-        # |> assert_has(link("John Tan"))
-      # end)
-    # end
-  # end
+    test "with invalid data fails", %{session: session} do
+      session
+      |> perform_login("john_tan@gmail.com", "123456")
+      |> visit(list_path(Endpoint, :index))
+      |> click(Wallaby.Query.text("List 1"))
+      |> click(link("Add"))
+      |> fill_in(text_field("Title"), with: "")
+      |> fill_in(text_field("Description"), with: "")
+      |> fill_in(text_field("Link"), with: "")
+      |> click(button("Add new item"))
+      |> assert_has(flash("Oops", :danger))
+    end
+
+    test "with valid data succeeds", %{session: session} do
+      session
+      |> perform_login("john_tan@gmail.com", "123456")
+      |> visit(list_path(Endpoint, :index))
+      |> click(Wallaby.Query.text("List 1"))
+      |> click(link("Add"))
+      |> fill_in(text_field("Title"), with: "Item 1")
+      |> fill_in(text_field("Description"), with: "item 1 description")
+      |> fill_in(text_field("Link"), with: "http://google.com")
+      |> click(button("Add new item"))
+      |> assert_has(flash("Success", :success))
+    end
+  end
 end

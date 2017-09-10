@@ -1,0 +1,33 @@
+<%= if @changeset.action do %>
+  <div class="alert alert-danger">
+    Oops, something went wrong! Please check the errors below.
+  </div>
+<% end %>
+<div class="card bg-light border-0 mb-4">
+  <%= form_for @changeset, item_path(@conn, :create, @list.slug), fn f -> %>
+    <div class="card-body">
+      <div class="form-group">
+        <%= label f, :title %>
+        <%= text_input f, :title, class: "form-control" %>
+        <%= error_tag f, :title %>
+      </div>
+
+      <div class="form-group">
+        <%= label f, :description %>
+        <%= text_input f, :description, class: "form-control" %>
+        <%= error_tag f, :description %>
+      </div>
+
+      <div class="form-group">
+        <%= label f, :url, "Link" %>
+        <%= text_input f, :url, class: "form-control" %>
+        <%= error_tag f, :url %>
+      </div>
+    </div>
+
+    <div class="form-group mb-0">
+      <%= submit "Add new item", class: "btn btn-secondary btn-lg btn-block" %>
+    </div>
+  <% end %>
+</div>
+

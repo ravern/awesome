@@ -1,6 +1,6 @@
 defmodule AwesomeWeb.ListTest do
   use AwesomeWeb.FeatureCase, async: true
-  import Wallaby.Query, only: [css: 2, text_field: 1, button: 1, css: 1, link: 1]
+  import Wallaby.Query, only: [text_field: 1, button: 1, css: 2, link: 1]
   alias Awesome.{Lists, Accounts}
 
   describe "list listing" do
@@ -76,7 +76,6 @@ defmodule AwesomeWeb.ListTest do
       session
       |> visit(list_path(Endpoint, :index))
       |> click(Wallaby.Query.text("List 1"))
-      |> take_screenshot()
       |> assert_has(Wallaby.Query.text("List 1"))
       |> assert_has(Wallaby.Query.text("list 1 description"))
     end

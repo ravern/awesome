@@ -4,7 +4,6 @@ defmodule AwesomeWeb.ListController do
 
   plug Guardian.Plug.EnsureResource, [handler: AwesomeWeb.GuardianErrorHandler]
     when action in [:new, :create]
-  # plug AwesomeWeb.LoadListsAuthor when action in [:create]
 
   def index(conn, _params) do
     lists = Lists.list_lists()

@@ -23,6 +23,8 @@ defmodule AwesomeWeb.Router do
 
     resources "/users", UserController, only: [:new, :create]
     resources "/user", UserController, only: [:edit, :update], singleton: true
+
+    resources "/:slug", ItemController, only: [:new, :create]
   end
 
   scope "/auth", AwesomeWeb do

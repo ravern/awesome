@@ -15,8 +15,8 @@ defmodule Awesome.Lists.Item do
   end
 
   @doc false
-  def changeset(%List{} = list, attrs) do
-    list
+  def changeset(%Item{} = item, attrs \\ %{}) do
+    item
     |> cast(attrs, [:title, :description, :url])
     |> validate_required([:title, :description, :url])
     |> validate_length(:title, max: 20)

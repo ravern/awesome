@@ -3,9 +3,10 @@ defmodule Awesome.Lists do
   CRUD for lists and collaborative stuffs
   """
 
+  import Ecto.Changeset, only: [put_assoc: 3]
   alias Awesome.Repo
   alias Awesome.Accounts.User
-  alias Awesome.Lists.{List, Author}
+  alias Awesome.Lists.{List, Author, Item}
 
   @doc """
   Returns author for user. If doesn't exist, create
@@ -35,6 +36,17 @@ defmodule Awesome.Lists do
   end
 
   @doc """
+  Creates a new item in a list.
+  """
+  def create_item(author, list, attrs) do
+    author
+    |> Ecto.build_assoc(:contributions)
+    |> Item.changeset(attrs)
+    |> put_assoc(:list, list)
+    |> Repo.insert()
+  end
+
+  @doc """
   Finds a list with the correct slug, or
   raises an error if not found.
   """
@@ -49,6 +61,13 @@ defmodule Awesome.Lists do
   """
   def change_list(list \\ %List{}) do
     List.changeset(list, %{})
+  end
+
+  @doc """
+  Returns an empty item changeset.
+  """
+  def change_item(item \\ %Item{}) do
+    Item.changeset(item, %{})
   end
 
   @doc """

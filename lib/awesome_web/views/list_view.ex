@@ -34,13 +34,13 @@ defmodule AwesomeWeb.ListView do
     Guardian.Plug.current_resource(conn)
   end
 
-  def utility_button(conn) do
+  def utility_button(conn, slug) do
     list_author_user_id = conn.assigns.list.author.user.id
     case current_user(conn) do
       nil ->
         link "Login to contribute", to: auth_path(conn, :request, "identity"), class: "text-dark text-center", style: "text-decoration: none;"
       %{id: ^list_author_user_id} ->
-        link "Add", to: list_path(conn, :index), class: "text-dark text-center", style: "text-decoration: none;"
+        link "Add", to: item_path(conn, :new, slug), class: "text-dark text-center", style: "text-decoration: none;"
       _ ->
         link "Contribute", to: list_path(conn, :index), class: "text-dark text-center", style: "text-decoration: none"
     end
