@@ -53,7 +53,7 @@ defmodule Awesome.Lists do
   def get_list!(slug) do
     List
     |> Repo.get_by!(slug: slug)
-    |> Repo.preload([:items, [author: :user]])
+    |> Repo.preload([[items: [author: :user]], [author: :user]])
   end
 
   @doc """

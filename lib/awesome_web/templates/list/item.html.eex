@@ -1,1 +1,12 @@
-Hello
+<a href="<%= @item.url %>" class="text-dark" style="text-decoration: none">
+  <div class="card border-0 mb-3">
+    <div class="card-body">
+      <h4 class="card-title"><%= @item.title %></h4>
+      <p class="card-subtitle single-line mb-3"><%= @item.description %></p>
+      <a href="#" class="card-link text-secondary">
+        <div class="d-inline-block align-middle mr-2" style="background-color: red; width: 30px; height: 30px;"></div>
+        <%= @item.author.user.name %>
+      </a>
+    </div>
+  </div>
+</a>

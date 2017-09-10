@@ -1,5 +1,8 @@
+# Note
+I am no longer actively working on this project. Building the site up to this point, the CRUD (Maybe not the DELETE part) is there. I have decided to move on as I think I have learnt enough when working on this project. My next project will play more to my interests (Game development, MMO games) and can also help me learn the same things. Thus, I am moving on from this project.
+
 # Awesome Lists - Website
-> Hosted at http://awesome.ravernkoh.me (Site still in development)
+> Hosted at http://awesome.ravernkoh.me
 
 Website for making and sharing awesome lists, which are collection of links to interesting things related to the list. It uses Phoenix, written in Elixir and uses Bootstrap 4.0 for the frontend design. Built by Ravern Koh.
 
@@ -11,8 +14,3 @@ I simply wanted a pet project to work on during my free time. This project seeme
 
 ## Author
 * Ravern Koh \[http://ravernkoh.me\] (Site still in development)
-
-## Todos
-- [ ] Add image upload functionality (For profile pictures)
-- [ ] Add more options to discover lists
-- [ ] 'Like' functionality
